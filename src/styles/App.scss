@@ -1,0 +1,496 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+//Variables
+$navHeight: 50px;
+$secondaryColor: #FFF1E6;
+$dropShadow: 0 0 0 75rem black;
+$titleFont: 'Italiana', serif;
+
+@mixin flexPosition($align, $justify, $direction) {
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    display: flex;
+}
+
+@mixin dropShadow($blur) {
+    box-shadow: 0 0 $blur rgba(21, 21, 21, 0.772);
+}
+
+// Asset Styles
+.bar-container {
+    width: 100%;
+    @include flexPosition(center, space-between, row);
+
+    .bar {
+        width: 0px;
+        height: 1px;
+        background: black;
+        transition: all 0.3s ease;
+        @include flexPosition(center, space-between, row);
+    }
+
+    .change-active {
+        background: #D9D9D9;
+    }
+}
+
+li:hover span.bar {
+    width: 100%;
+}
+
+.icon-container {
+    margin-top: 8px;
+
+    img {
+        width: 50px;
+        height: auto;
+        margin: 10px 5px;
+    }
+}
+
+// Navbar Styles
+.newsletter-bar {
+    height: $navHeight;
+    background: $secondaryColor;
+    width: 100%;
+    @include dropShadow(5px);
+    @include flexPosition(center, center, row);
+}
+
+.newsletter-bar-container {
+    width: 80%;
+    height: $navHeight;
+    @include flexPosition(center, center, row);
+}
+
+.newsletter-bar-paragraph {
+    padding: 5px;
+    font-size: 1rem;
+    margin-right: 24px;
+    font-weight: 300;
+}
+
+.form-data {
+    min-width: 275px;
+    padding: 5px;
+
+    .newsletter-email-input {
+        border: none;
+        width: 70%;
+        margin-right: 16px;
+        background-color: #D9D9D9;
+        border-radius: 8px;
+        padding: 4px;
+        transition: all 0.3s ease-in-out;
+        @include dropShadow(4px);
+
+        &:hover {
+            @include dropShadow(8px);
+            z-index: 1000;
+        }
+    }
+
+    .newsletter-submit {
+        border: none;
+        background: #D9D9D9;
+        @include dropShadow(4px);
+        width: 70px;
+        height: 24px;
+        padding: 2px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            @include dropShadow(8px);
+        }
+    }
+
+    @include flexPosition(center, space-between, row);
+}
+
+.navbar {
+    height: $navHeight;
+    width: 100%;
+    @include flexPosition(center, center, row);
+
+    .navbar-list {
+        height: $navHeight;
+        width: 80%;
+        list-style: none;
+        @include flexPosition(center, space-evenly, row);
+    }
+
+    .items {
+        @include flexPosition(center, center, column);
+
+        .links {
+            width: 100%;
+            padding: 4px;
+            color: black;
+            text-decoration: none;
+            font-size: 1.8rem;
+        }
+
+        .change-active {
+            color: white;
+        }
+    }
+}
+
+
+
+
+// Home Page Styles
+
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    @include flexPosition(center, flex-start, column);
+
+    span.line-design {
+        height: 1px;
+        width: 200px;
+        background: black;
+        position: absolute;
+        top: 700px;
+        left: 40%;
+        transform: rotateZ(90deg);
+
+        &:nth-of-type(2) {
+            top: 800px;
+            left: 60%;
+            transform: rotateZ(180deg);
+        }
+    }
+
+    .home-introduction-container {
+        margin-top: 60px;
+        width: 80%;
+        height: 500px;
+        background: $secondaryColor;
+        position: relative;
+        @include flexPosition(flex-start, space-evenly, row);
+        @include dropShadow(12px);
+
+        .home-introduction-img-container {
+            width: 50%;
+            @include flexPosition(center, center, column);
+
+            .home-introduction-img {
+                width: 60%;
+                height: auto;
+                border: 1px solid black;
+                @include dropShadow(18px)
+            }
+        }
+
+        .home-introduction-content {
+            @include flexPosition(center, center, column);
+            width: 50%;
+            height: 100%;
+
+            .home-introduction-title {
+                font-family: $titleFont;
+                font-size: 6rem;
+                padding: 4px;
+                margin: 0 16px;
+                font-weight: 400;
+            }
+
+            .home-introduction-slogan {
+                font-family: $titleFont;
+                font-size: 2.4rem;
+                padding: 4px;
+                margin: 0 16px;
+            }
+
+            .home-introduction-summary {
+                font-size: 1.4rem;
+                text-align: center;
+                padding: 8px;
+                margin: 40px 16px 0;
+                font-weight: 300;
+            }
+
+            .form-data {
+                margin-top: 25px;
+
+                .newsletter-email-input {
+                    height: 32px;
+                    width: 300px;
+                }
+            }
+        }
+    }
+
+    .home-about {
+        width: 80%;
+        min-height: 100%;
+        @include flexPosition(center, space-between, row);
+        position: relative;
+        margin-bottom: 100px;
+
+        .home-about-img {
+            width: 50%;
+
+            .home-display-img1 {
+                width: auto;
+                height: 800px;
+                z-index: 2;
+                top: 0px;
+                margin: 50px 0 0 25px;
+                filter: drop-shadow(0 0 1rem rgba(65, 65, 65, 0.71));
+            }
+        }
+
+        .home-about-content {
+            width: 50%;
+            margin-top: 220px;
+            @include flexPosition(center, center, column);
+
+            .home-about-title {
+                font-family: $titleFont;
+                text-align: center;
+                font-size: 3rem;
+                width: 80%;
+            }
+
+            .home-about-summary {
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 300;
+                margin-top: 25px;
+                width: 80%;
+            }
+        }
+    }
+
+}
+
+// About Page Style
+
+// Artical Container Map
+
+$articalBox: "artical-1",
+    "artical-2",
+    "artical-3";
+
+@each $artical in $articalBox {
+    .#{$artical} {
+        width: 60%;
+        height: 250px;
+        margin: 50px 0;
+        background: $secondaryColor;
+        cursor: pointer;
+        @include dropShadow(16px);
+        @include flexPosition(center, flex-start, row)
+    }
+}
+
+;
+
+.artical-page {
+    @include flexPosition(center, center, column);
+    width: 100%;
+    height: 100%;
+
+    .about-title {
+        font-family: $titleFont;
+        font-size: 8rem;
+        margin-top: 80px;
+    }
+
+    .artical-img-container {
+        height: 100%;
+        margin-left: 20px;
+        @include flexPosition(center, flex-start, row);
+
+        .artical-img {
+            object-fit: cover;
+            height: 200px;
+            width: 200px;
+            @include dropShadow(12px);
+        }
+    }
+
+    .artical-content {
+        height: 100%;
+        padding: 25px;
+        width: 80%;
+        @include flexPosition(flex-start, space-between, column);
+
+        .artical-title {
+            font-family: $titleFont;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .artical-summary {
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+    }
+}
+
+// About Me Styles
+
+.about-contact-page {
+    @include flexPosition(center, center, row);
+    width: 100%;
+    max-height: 700px;
+    height: auto;
+
+    .img-template {
+        width: 50%;
+        z-index: -100;
+
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .about-content {
+        width: 50%;
+        @include flexPosition(center, flex-start, column);
+
+        .about-title,
+        .about-paragraph {
+            width: 80%;
+        }
+
+        .about-title {
+            font-family: $titleFont;
+            font-size: 4rem;
+            padding: 5px;
+            margin-bottom: 25spx;
+        }
+
+        .about-paragraph {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+    }
+
+    .contact-content {
+        width: 50%;
+        @include flexPosition(center, flex-start, column); 
+        .contact-title {
+            font-family: $titleFont;
+            font-size: 4rem;
+            margin-top: 25px;
+            padding: 5px;
+        }
+        p, .contact-summary {
+            width: 80%;
+            font-size: 1.4rem;
+            font-weight: 300;
+            &:nth-last-of-type(2) {
+                margin-bottom: 50px;
+            }
+        }
+        div {
+            @include flexPosition(center, flex-start, row);
+            width: 80%;
+            .contact-summary {
+                width: auto;
+            }
+            .icon-container {
+                width: auto;
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+// Footer Styles
+
+.footer {
+    width: 100%;
+    height: 400px;
+    background: #FFF1E6;
+    @include flexPosition(center, center, column);
+    @include dropShadow(16px);
+
+    .footer-container {
+        width: 80%;
+        height: 100%;
+        @include flexPosition(center, center, row);
+
+        .footer-socials {
+            width: 100%;
+            height: 250px;
+            @include flexPosition(flex-start, flex-start, column);
+
+            .footer-socials-title {
+                font-weight: 400;
+                font-size: 3rem;
+                padding: 5px;
+            }
+
+            .footer-socials-summary {
+                font-weight: 300;
+                font-size: 1.6rem;
+                padding: 5px;
+            }
+
+            .form-data {
+                width: 375px;
+
+                .newsletter-email-input {
+                    height: 30px;
+                    font-size: 1.2rem;
+                }
+
+                .newsletter-submit {
+                    height: 30px;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .footer-navbar {
+            width: 100%;
+            height: 250px;
+            @include flexPosition(center, flex-start, column);
+
+            .footer-navbar-title {
+                font-family: $titleFont;
+                font-size: 3rem;
+                padding: 5px;
+            }
+
+            .footer-nav-list {
+                list-style: none;
+
+                li {
+                    padding: 5px;
+                    margin-bottom: 5px;
+                    @include flexPosition(center, center, column);
+                }
+
+                a {
+                    text-decoration: none;
+                    color: black;
+                    cursor: pointer;
+                    font-size: 1.6rem;
+                    font-weight: 300;
+                    padding: 2px;
+                }
+            }
+        }
+    }
+}
