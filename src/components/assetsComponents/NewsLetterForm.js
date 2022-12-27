@@ -17,7 +17,7 @@ const NewsLetterForm = () => {
     }
     console.log("Form Data:", formData)
 
-    Axios.post("http://localhost:4000/", {
+    Axios.post("https://thirdeye-api.onrender.com/", {
       ...formData
     })
     .then((res) => {
