@@ -5,6 +5,7 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+
 //Variables
 $navHeight: 50px;
 $secondaryColor: #FFF1E6;
@@ -50,39 +51,42 @@ li:hover span.bar {
     img {
         width: 50px;
         height: auto;
-        margin: 10px 5px;
+        padding: 0.2rem;
     }
 }
 
 // Navbar Styles
+
 .newsletter-bar {
     height: $navHeight;
     background: $secondaryColor;
     width: 100%;
     @include dropShadow(5px);
     @include flexPosition(center, center, row);
+    position: relative;
+    z-index: 10;
 }
 
 .newsletter-bar-container {
-    width: 80%;
+    width: 90%;
     height: $navHeight;
     @include flexPosition(center, center, row);
 }
 
 .newsletter-bar-paragraph {
     padding: 5px;
-    font-size: 1rem;
+    font-size: clamp(0.3rem, 5vw + 1rem, 1rem);
     margin-right: 24px;
     font-weight: 300;
 }
 
 .form-data {
-    min-width: 275px;
-    padding: 5px;
+    width: min(400px, 70%);
+    padding: 1em;
 
     .newsletter-email-input {
         border: none;
-        width: 70%;
+        width: min(200px, 70%);
         margin-right: 16px;
         background-color: #D9D9D9;
         border-radius: 8px;
@@ -112,13 +116,15 @@ li:hover span.bar {
         }
     }
 
-    @include flexPosition(center, space-between, row);
+    @include flexPosition(center, center, row);
 }
 
 .navbar {
     height: $navHeight;
     width: 100%;
     @include flexPosition(center, center, row);
+    z-index: 10;
+    position: relative;
 
     .navbar-list {
         height: $navHeight;
@@ -138,10 +144,46 @@ li:hover span.bar {
             font-size: 1.8rem;
         }
 
+
         .change-active {
             color: white;
         }
     }
+}
+
+.responsive-navbar {
+    min-width: 50%;
+    max-height: 100%;
+    @include flexPosition(center, center, column);
+    z-index: 1;
+    position: relative;
+    display: none;
+
+    .navbar-list {
+        min-height: 100%;
+        max-width: 80%;
+        list-style: none;
+        @include flexPosition(center, space-evenly, column);
+    }
+
+    .items {
+        @include flexPosition(center, center, column);
+
+        .links {
+            width: 100%;
+            padding: 1rem;
+            color: $secondaryColor;
+            text-decoration: none;
+            font-size: 1.8rem;
+        }
+
+        .bar-container {
+            .bar {
+                background: $secondaryColor;
+            }
+        }
+    }
+
 }
 
 
@@ -151,7 +193,7 @@ li:hover span.bar {
 
 .home-page {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     @include flexPosition(center, flex-start, column);
 
     span.line-design {
@@ -173,19 +215,19 @@ li:hover span.bar {
     .home-introduction-container {
         margin-top: 60px;
         width: 80%;
-        height: 500px;
+        min-height: 200px;
         background: $secondaryColor;
         position: relative;
-        @include flexPosition(flex-start, space-evenly, row);
+        @include flexPosition(center, space-evenly, row);
         @include dropShadow(12px);
 
         .home-introduction-img-container {
-            width: 50%;
-            @include flexPosition(center, center, column);
+            width: 30%;
+            @include flexPosition(flex-end, center, column);
 
             .home-introduction-img {
-                width: 60%;
-                height: auto;
+                width: min(500px, 100%);
+                min-height: 100%;
                 border: 1px solid black;
                 @include dropShadow(18px)
             }
@@ -193,81 +235,81 @@ li:hover span.bar {
 
         .home-introduction-content {
             @include flexPosition(center, center, column);
-            width: 50%;
-            height: 100%;
+            max-width: 100%;
+            min-height: 100%;
 
             .home-introduction-title {
                 font-family: $titleFont;
-                font-size: 6rem;
-                padding: 4px;
-                margin: 0 16px;
+                font-size: clamp(3rem, 7vw + 1rem, 7rem);
+                padding: 0.25em;
+                margin: 0 0.25em;
                 font-weight: 400;
             }
 
             .home-introduction-slogan {
                 font-family: $titleFont;
-                font-size: 2.4rem;
-                padding: 4px;
-                margin: 0 16px;
+                font-size: clamp(0.5rem, 2vw + 1rem, 4rem);
+                padding: 0 0.25em;
+                margin: 0 0.25em;
             }
 
             .home-introduction-summary {
-                font-size: 1.4rem;
+                font-size: clamp(0.5rem, 2vw + 1rem, 1rem);
                 text-align: center;
                 padding: 8px;
-                margin: 40px 16px 0;
+                margin: 1rem 0.5rem 0;
                 font-weight: 300;
             }
 
             .form-data {
-                margin-top: 25px;
+                margin-top: 1rem;
+                width: max(7vw, 80%);
 
                 .newsletter-email-input {
-                    height: 32px;
-                    width: 300px;
+                    min-height: 1em;
                 }
             }
         }
     }
 
     .home-about {
-        width: 80%;
+        max-width: 80%;
         min-height: 100%;
         @include flexPosition(center, space-between, row);
-        position: relative;
-        margin-bottom: 100px;
+        margin-bottom: 7rem;
 
         .home-about-img {
-            width: 50%;
+            max-width: 100%;
+            @include flexPosition(center, center, column);
+            max-width: 50%;
 
             .home-display-img1 {
-                width: auto;
-                height: 800px;
+                width: min(500px, 100%);
+                min-height: 100%;
                 z-index: 2;
-                top: 0px;
-                margin: 50px 0 0 25px;
+                margin: 50px 25px;
                 filter: drop-shadow(0 0 1rem rgba(65, 65, 65, 0.71));
             }
         }
 
         .home-about-content {
-            width: 50%;
-            margin-top: 220px;
+            max-width: 70%;
+            margin-top: 2rem;
             @include flexPosition(center, center, column);
 
             .home-about-title {
                 font-family: $titleFont;
                 text-align: center;
-                font-size: 3rem;
-                width: 80%;
+                font-size: clamp(2rem, 1vw + 1rem, 5rem);
+                max-width: 80%;
             }
 
             .home-about-summary {
                 text-align: center;
-                font-size: 1.6rem;
+                font-size: clamp(1rem, 5vw - 1em, 2rem);
                 font-weight: 300;
                 margin-top: 25px;
-                width: 80%;
+                max-width: 80%;
             }
         }
     }
@@ -284,32 +326,37 @@ $articalBox: "artical-1",
 
 @each $artical in $articalBox {
     .#{$artical} {
-        width: 60%;
-        height: 250px;
+        max-width: 60%;
+        min-height: 250px;
         margin: 50px 0;
         background: $secondaryColor;
         cursor: pointer;
         @include dropShadow(16px);
-        @include flexPosition(center, flex-start, row)
+        @include flexPosition(center, flex-start, row);
     }
 }
 
-;
 
 .artical-page {
     @include flexPosition(center, center, column);
     width: 100%;
     height: 100%;
 
+    #artical-container {
+        color: black;
+        text-decoration: none;
+    }
+
     .about-title {
         font-family: $titleFont;
-        font-size: 8rem;
-        margin-top: 80px;
+        font-size: clamp(4.2rem, 5vw + 1rem, 8rem);
+        margin-top: 50px;
     }
 
     .artical-img-container {
-        height: 100%;
+        min-height: 100%;
         margin-left: 20px;
+        padding: 1rem;
         @include flexPosition(center, flex-start, row);
 
         .artical-img {
@@ -321,20 +368,31 @@ $articalBox: "artical-1",
     }
 
     .artical-content {
-        height: 100%;
+        min-height: 250px;
         padding: 25px;
-        width: 80%;
+        max-width: 80%;
         @include flexPosition(flex-start, space-between, column);
+
+        .coming-soon {
+            font-family: $titleFont;
+            text-align: center;
+            font-size: clamp(2rem, 3vw - 1rem, 2.5rem);
+            min-width: 100%;
+        }
 
         .artical-title {
             font-family: $titleFont;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw - 1rem, 2rem);
             font-weight: 600;
+            min-width: 100%;
+            padding: 1rem;
         }
 
         .artical-summary {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 4vw - 1rem, 1.4rem);
             font-weight: 300;
+            min-width: 100%;
+            padding: 1rem;
         }
     }
 }
@@ -343,34 +401,39 @@ $articalBox: "artical-1",
 
 .about-contact-page {
     @include flexPosition(center, center, row);
-    width: 100%;
-    max-height: 700px;
-    height: auto;
+    max-width: 100%;
+    overflow: visible;
+    height: clamp(500px, 70vw - 3rem, 600px);
 
     .img-template {
-        width: 50%;
+        min-width: 50vw;
         z-index: -100;
+        overflow: visible;
+        position: relative;
 
         img {
-            width: 100%;
-            object-fit: contain;
+            height: clamp(700px, 90vw + 3rem, 1000px);
+            width: min(50vw, 100%);
+            top: -50px;
+            object-position: -50px 100px;
         }
     }
 
     .about-content {
-        width: 50%;
+        max-width: 100%;
         @include flexPosition(center, flex-start, column);
 
         .about-title,
         .about-paragraph {
             width: 80%;
+            margin-bottom: 25px;
         }
 
         .about-title {
             font-family: $titleFont;
             font-size: 4rem;
             padding: 5px;
-            margin-bottom: 25spx;
+            margin-bottom: 25px;
         }
 
         .about-paragraph {
@@ -381,27 +444,34 @@ $articalBox: "artical-1",
 
     .contact-content {
         width: 50%;
-        @include flexPosition(center, flex-start, column); 
+        @include flexPosition(center, flex-start, column);
+
         .contact-title {
             font-family: $titleFont;
             font-size: 4rem;
             margin-top: 25px;
             padding: 5px;
         }
-        p, .contact-summary {
+
+        p,
+        .contact-summary {
             width: 80%;
             font-size: 1.4rem;
             font-weight: 300;
+
             &:nth-last-of-type(2) {
                 margin-bottom: 50px;
             }
         }
+
         div {
             @include flexPosition(center, flex-start, row);
             width: 80%;
+
             .contact-summary {
                 width: auto;
             }
+
             .icon-container {
                 width: auto;
 
@@ -409,6 +479,56 @@ $articalBox: "artical-1",
         }
     }
 }
+
+// Blog Post
+
+.blog-post-1 {
+    @include flexPosition(center, center, row);
+    width: 100%;
+    overflow: visible;
+    height: clamp(400px, 50vw - 3rem, 900px);
+
+    .blog-img-template {
+        max-width: 50%;
+        min-height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        position: relative;
+
+        img {
+            max-width: 95%;
+        }
+    }
+
+    .blog-container {
+        max-width: 50%;
+
+        .blog-content {
+            width: 100%;
+            @include flexPosition(center, flex-start, column);
+
+            .blog-title,
+            .blog-paragraph {
+                width: 80%;
+                margin-bottom: 25px;
+            }
+
+            .blog-title {
+                font-family: $titleFont;
+                font-size: clamp(1.6rem, 3.5vw - 1rem, 3.5rem);
+                padding: 5px;
+                margin-bottom: 25px;
+            }
+
+            .blog-paragraph {
+                font-size: clamp(1rem, 2.5vw - 1rem, 1.4rem);
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+
 
 
 
@@ -420,7 +540,7 @@ $articalBox: "artical-1",
 
 .footer {
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     background: #FFF1E6;
     @include flexPosition(center, center, column);
     @include dropShadow(16px);
@@ -432,23 +552,25 @@ $articalBox: "artical-1",
 
         .footer-socials {
             width: 100%;
-            height: 250px;
-            @include flexPosition(flex-start, flex-start, column);
+            min-height: 275px;
+            @include flexPosition(flex-start, center, column);
 
             .footer-socials-title {
-                font-weight: 400;
-                font-size: 3rem;
-                padding: 5px;
+                font-weight: 600;
+                font-size: clamp(0.5rem, 2vw + 1rem, 3rem);
+                padding: clamp(5px, 0.5vw, 10px);
             }
 
             .footer-socials-summary {
                 font-weight: 300;
                 font-size: 1.6rem;
-                padding: 5px;
+                padding: clamp(5px, 0.5vw, 10px);
             }
 
             .form-data {
                 width: 375px;
+                @include flexPosition(center, flex-start, row);
+                padding: clamp(5px, 0.5vw, 10px);
 
                 .newsletter-email-input {
                     height: 30px;
@@ -460,12 +582,16 @@ $articalBox: "artical-1",
                     font-size: 1rem;
                 }
             }
+
+            .icon-container {
+                padding: clamp(5px, 0.5vw, 10px);
+            }
         }
 
         .footer-navbar {
             width: 100%;
-            height: 250px;
-            @include flexPosition(center, flex-start, column);
+            min-height: 250px;
+            @include flexPosition(center, center, column);
 
             .footer-navbar-title {
                 font-family: $titleFont;
@@ -493,4 +619,346 @@ $articalBox: "artical-1",
             }
         }
     }
+}
+
+@media(max-width: 1200px) {
+        .navbar {
+            display: flex;
+            z-index: 0;
+        }
+
+    // Home Page
+    .home-introduction-content {
+        min-width: 100%;
+    }
+
+    .home-introduction-img {
+        display: none;
+    }
+
+    .home-page .home-about .home-about-content {
+        max-width: 80%;
+    }
+
+    .home-page .home-about {
+        @include flexPosition(center, center, column);
+    }
+
+    // Artical Page
+    @each $artical in $articalBox {
+        .#{$artical} {
+            @include flexPosition(center, flex-start, column);
+            max-width: 40rem;
+            margin-right: 20px;
+            margin-left: 20px;
+            border-radius: 2rem;
+
+            .artical-content {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .artical-title {
+                text-align: center;
+            }
+
+            .artical-athor {
+                font-weight: 600;
+            }
+        }
+    }
+
+    // About Page
+    .about-contact-page {
+        min-height: calc(100vh - 450px);
+        position: relative;
+        top: -50px;
+        z-index: 1;
+
+        .img-template {
+            display: none;
+        }
+
+        .about-container {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.37)), url("/public/images/about-image.jpg");
+            min-width: 100vw;
+            min-height: calc(100% + 100px);
+            background-position: bottom 50% right 80%;
+            background-size: cover;
+            @include flexPosition(flex-end, center, row);
+
+            .responsive-navbar {
+                display: flex;
+                position: relative;
+                top: -20px;
+                min-width: 30%;
+
+                .links {
+                    font-size: clamp(1.4rem, 4vw - 1rem, 1.8rem);
+                }
+            }
+
+            .about-content {
+                min-width: 70%;
+                max-height: 500px;
+                @include flexPosition(flex-start, center, column);
+                z-index: 1;
+
+                .about-title {
+                    font-size: clamp(3rem, 3.5vw - 1rem, 4rem);
+                    color: $secondaryColor;
+                    padding-left: 20px;
+                    min-width: 100%;
+                }
+
+                .about-paragraph {
+                    font-size: clamp(0.6em, 3.5vw - 1em, 1rem);
+                    color: $secondaryColor;
+                    font-weight: 600;
+                    padding-left: 20px;
+                    min-width: 100%;
+                }
+            }
+
+
+        }
+    }
+
+    .about-contact-page {
+        min-height: calc(100vh - 450px);
+        position: relative;
+        top: -50px;
+        z-index: 1;
+
+        .img-template {
+            display: none;
+        }
+
+        .contact-container {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.37)), url("/public/images/about-image.jpg");
+            min-width: 100vw;
+            min-height: calc(100% + 100px);
+            background-position: bottom 50% right 80%;
+            background-size: cover;
+            @include flexPosition(flex-end, center, row);
+
+            .responsive-navbar {
+                display: flex;
+                position: relative;
+                top: -20px;
+                min-width: 30%;
+
+                .links {
+                    font-size: clamp(1.4rem, 4vw - 1rem, 1.8rem);
+                }
+            }
+
+            .contact-content {
+                min-width: 70%;
+                max-height: 500px;
+                @include flexPosition(flex-start, center, column);
+                z-index: 1;
+            }
+
+            .contact-title {
+                font-size: clamp(3rem, 4vw + 1rem, 4rem);
+                color: $secondaryColor;
+                padding-left: 20px;
+            }
+
+            .contact-summary {
+                font-size: clamp(0.8rem, 4vw - 1rem, 1.2rem);
+                color: $secondaryColor;
+                font-weight: 600;
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .icon-container {
+                margin-bottom: 20px;
+                padding: 10px;
+
+                .instagram-icon {
+                    background-color: #FFF1E6;
+                    border-radius: 100%;
+                    padding: 1px;
+                    margin: 5%;
+                }
+
+                .youtube-icon {
+                    background-color: #FFF1E6;
+                    border-radius: 100%;
+                    padding: 1px;
+                    margin: 5%;
+                }
+
+                .tik-tok-icon {
+                    background-color: #FFF1E6;
+                    border-radius: 100%;
+                    padding: 1px;
+                    margin: 5%;
+                }
+            }
+        }
+    }
+
+    // Blog Post
+    .blog-post-1 {
+        min-height: calc(100vh - 450px);
+        position: relative;
+        top: -50px;
+        z-index: 1;
+
+        .blog-img-template {
+            display: none;
+        }
+        
+
+        .blog-container {
+            max-width: 100vw;
+            min-height: calc(100% + 100px);
+            @include flexPosition(flex-end, flex-start, row);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("/public/images/do-more.jpg");
+            background-size: cover;
+            background-position-y: -150px;
+
+            .responsive-navbar {
+                display: flex;
+                min-width: 15%;
+                height: clamp(400px, 40vw - 1rem, 500px);
+                margin-bottom: 20px;
+                .links {
+                    padding: 0;
+                    font-size: clamp(1rem, 4vw - 1rem, 1.4rem);
+
+                }
+            }
+
+            .blog-content {
+                max-width: 70%;
+                height: clamp(400px, 40vw - 1rem, 500px);
+                margin: 20px;
+                @include flexPosition(flex-start, center, row);
+                background: rgba(111, 105, 105, 0.9);
+                border-radius: 2rem;
+                
+                .scroll-indicator-container {
+                    position: relative;
+                    height: clamp(300px, 40vw - 1rem, 450px);
+                    @include flexPosition(center, flex-end, column);
+                    max-width: 5%;
+                    margin-right: 2px;
+
+
+                    .scroll-indicator {
+                        color: #FFF1E6;
+                        transform: rotate(90deg);
+                        font-size: 0.9rem;
+                        min-width: 150px;
+                    }
+                }
+
+                .blog-content-container {
+                    @include flexPosition(flex-start, flex-start, column);
+                    width: 95%;
+                    max-height: 100%;
+                    overflow: scroll;
+                    border-radius: 2em;
+                }
+
+                .blog-title {
+                    color: #FFF1E6;
+                    font-size: clamp(1.2rem, 5vw - 1rem, 1.4rem);
+                    padding: 20px 5px 5px 8px;
+                    margin-bottom: 10px;
+        
+                }
+
+                .blog-paragraph {
+                    color: #FFF1E6;
+                    font-size: clamp(0.8rem, 5vw - 1rem, 1.2rem);
+                    line-height: 1.125rem;
+                    font-weight: 400;
+                    min-width: 100%;
+                    padding: 0 4px 0 8px;
+                }
+            }
+        }
+    }
+
+}
+
+@media(max-width: 700px) {
+
+    .home-page .home-about {
+        max-width: 100%;
+    }
+
+    .home-about-title,
+    .home-about-summary {
+        margin-top: 5rem;
+        min-width: 100%;
+    }
+
+    .home-about-img,
+    .home-display-img1 {
+        display: none;
+    }
+
+    .footer .footer-container {
+        @include flexPosition(center, center, column-reverse);
+    }
+
+    .footer .footer-container .footer-socials {
+        @include flexPosition(center, center, column);
+    }
+
+    .footer .footer-container .footer-socials .form-data {
+        @include flexPosition(space-evenly, center, row);
+    }
+
+    .newsletter-bar-container .form-data {
+        display: none;
+    }
+
+    .newsletter-bar-paragraph {
+        text-align: center;
+    }
+
+    .navbar .items .links {
+        font-size: clamp(0.5rem, 0.9vw + 1rem, 1.8rem);
+    }
+
+    // About Page
+    .about-contact-page {
+        min-height: calc(100vh - 450px);
+        position: relative;
+        top: -50px;
+        z-index: 1;
+
+
+        .img-template {
+            display: none;
+        }
+
+        .about-content {
+            max-width: 100%;
+            min-height: calc(100% + 100px);
+            @include flexPosition(flex-start, flex-end, column);
+
+            .about-title {
+                font-size: clamp(3rem, 4vw + 1rem, 4rem);
+                color: $secondaryColor;
+                padding-left: 20px;
+            }
+
+            .about-paragraph {
+                font-size: clamp(0.6rem, 4vw - 1rem, 1.2rem);
+                color: $secondaryColor;
+                font-weight: 600;
+                padding-left: 20px;
+            }
+        }
+    }
+
 }

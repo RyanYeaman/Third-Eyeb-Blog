@@ -22,7 +22,7 @@ const Footer = () => {
                             <NavUnderline />
                         </li>
                         <li>
-                            <Link to='/artical' className='artical'>Artical</Link>
+                            <Link to='/articals' className='artical'>Artical</Link>
                             <NavUnderline />
                         </li>
                         <li>
