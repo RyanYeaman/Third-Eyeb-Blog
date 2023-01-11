@@ -21,7 +21,7 @@ const HomeIntroduction = (props) => {
 
         <div className='home-about'>
           <div className='home-about-img'>
-            <img className='home-display-img1' src='./images/About-img.png' alt='' />
+            <img className='home-display-img1' src='./images/About-Img.png' alt='' />
           </div>
           <div className='home-about-content'>
             <h1 className='home-about-title'>

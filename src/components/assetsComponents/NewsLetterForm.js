@@ -3,6 +3,10 @@ import { useState } from 'react';
 import Axios from "axios"
 
 const NewsLetterForm = () => {
+  const resultForm = document.querySelector(".results")
+  const resultTitle = document.querySelector(".result-title")
+  const resultMessage = document.querySelector(".result-message")
+
   // email data state
   let [emailData, setEmailData] = useState("")
   // updates email data
@@ -20,18 +24,23 @@ const NewsLetterForm = () => {
     Axios.post("https://thirdeye-api.onrender.com/", {
       ...formData
     })
-    .then((res) => {
-      setEmailData("");
-      console.log("Email was Sent:", res);
-    })
-    .catch((err) => {
-      console.log("error:", err);
-    })
-  
+      .then((res) => {
+        setEmailData("");
+        resultTitle.innerHTML = res?.data ? "Welcome to The Third Eye" : "Error"
+        resultMessage.innerHTML = res?.data ? "Thank you for joining the Third Eye newsletter" : "There was a propblem with the email you entered! Try again."
+        console.log("Email was Sent:", res);
+      })
+      .catch((err) => {
+        console.log("error:", err);
+      })
+
+    resultForm.classList.remove("hide")
   };
 
+
+
   return (
-    <form className='form-data' onSubmit={handleSubmit}>
+    <form className='form-data' onSubmit={handleSubmit} >
       <input className='newsletter-email-input' type='email' placeholder='email' onChange={getData} value={emailData} />
       <button className='newsletter-submit' type='submit' >Sign Up!</button>
     </form>
